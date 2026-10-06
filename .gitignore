@@ -37,7 +37,7 @@ build/
 ### added by me
 .env
 secrets/db_password.txt
-resources/db.properties
+src/main/resources/db.properties
 
 GreetingServlet
 HelloServlet
