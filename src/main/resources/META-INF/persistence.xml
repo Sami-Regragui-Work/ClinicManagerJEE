@@ -3,7 +3,23 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_2.xsd"
              version="3.2">
-    <persistence-unit name="default">
+    <persistence-unit name="clinic-manager">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <class>org.jee.clinicmanager.model.User</class>
+        <class>org.jee.clinicmanager.model.Patient</class>
+        <class>org.jee.clinicmanager.model.Doctor</class>
+        <class>org.jee.clinicmanager.model.Appointment</class>
+        <class>org.jee.clinicmanager.model.Departement</class>
+        <class>org.jee.clinicmanager.model.Specialty</class>
+        <class>org.jee.clinicmanager.model.Availability</class>
+        <class>org.jee.clinicmanager.model.MedicalNote</class>
+
+        <properties>
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
 
     </persistence-unit>
 </persistence>

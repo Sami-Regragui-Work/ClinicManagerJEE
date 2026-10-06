@@ -1,0 +1,6 @@
+db.urlPrefix=jdbc:postgresql
+db.host=localhost
+db.port=5432
+db.name=cm_db
+db.user=root
+db.password=
