@@ -1,11 +1,11 @@
 package org.jee.clinicmanager.service;
 
-import org.jee.clinicmanager.dto.UserLoginDTO;
-import org.jee.clinicmanager.dto.UserRegistrationDTO;
-import org.jee.clinicmanager.exception.DuplicateEmailException;
-import org.jee.clinicmanager.exception.InvalidEmailException;
-import org.jee.clinicmanager.exception.InvalidPasswordException;
-import org.jee.clinicmanager.exception.UserException;
+import org.jee.clinicmanager.dto.request.auth.UserLoginDTO;
+import org.jee.clinicmanager.dto.request.auth.UserRegistrationDTO;
+import org.jee.clinicmanager.exception.user.DuplicateEmailException;
+import org.jee.clinicmanager.exception.user.InvalidEmailException;
+import org.jee.clinicmanager.exception.user.InvalidPasswordException;
+import org.jee.clinicmanager.exception.user.UserException;
 import org.jee.clinicmanager.model.User;
 import org.jee.clinicmanager.model.enums.UserRole;
 import org.jee.clinicmanager.repository.UserRepository;

@@ -1,4 +1,4 @@
-package org.jee.clinicmanager.exception;
+package org.jee.clinicmanager.exception.user;
 
 public class DuplicateEmailException extends UserException {
     public DuplicateEmailException(String message) {

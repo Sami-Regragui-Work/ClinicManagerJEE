@@ -1,17 +1,15 @@
-package org.jee.clinicmanager.controller;
+package org.jee.clinicmanager.controller.auth;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validator;
+import org.jee.clinicmanager.controller.BaseServlet;
 import org.jee.clinicmanager.dto.UserRegistrationDTO;
-import org.jee.clinicmanager.exception.DuplicateEmailException;
+import org.jee.clinicmanager.exception.user.DuplicateEmailException;
 import org.jee.clinicmanager.repository.imp.UserRepositoryImp;
 import org.jee.clinicmanager.service.AuthService;
 
@@ -22,16 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @WebServlet("/auth/register")
-public class RegisterServlet extends HttpServlet {
-    private EntityManagerFactory emf;
-    private Validator validator;
-
-    @Override
-    public void init() {
-        this.emf = (EntityManagerFactory) getServletContext().getAttribute("entityManagerFactory");
-        this.validator = (Validator) getServletContext().getAttribute("validator");
-    }
-
+public class RegisterServlet extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/WEB-INF/auth/register.jsp").forward(req, resp);

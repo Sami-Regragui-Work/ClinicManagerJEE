@@ -1,18 +1,16 @@
-package org.jee.clinicmanager.controller;
+package org.jee.clinicmanager.controller.auth;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.ConstraintViolation;
+import org.jee.clinicmanager.controller.BaseServlet;
 import org.jee.clinicmanager.dto.UserLoginDTO;
 
-import jakarta.validation.Validator;
-import org.jee.clinicmanager.exception.UserException;
+import org.jee.clinicmanager.exception.user.UserException;
 import org.jee.clinicmanager.model.User;
 import org.jee.clinicmanager.repository.imp.UserRepositoryImp;
 import org.jee.clinicmanager.service.AuthService;
@@ -22,17 +20,7 @@ import java.util.List;
 import java.util.Set;
 
 @WebServlet("/auth/login")
-public class LoginServlet extends HttpServlet {
-    private EntityManagerFactory emf;
-    private Validator validator;
-
-
-    @Override
-    public void init() {
-        this.emf = (EntityManagerFactory) getServletContext().getAttribute("entityManagerFactory");
-        this.validator = (Validator) getServletContext().getAttribute("validator");
-    }
-
+public class LoginServlet extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
