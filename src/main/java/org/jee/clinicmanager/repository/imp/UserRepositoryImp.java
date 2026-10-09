@@ -5,22 +5,20 @@ import jakarta.persistence.NoResultException;
 import org.jee.clinicmanager.model.User;
 import org.jee.clinicmanager.repository.UserRepository;
 
-public class UserRepositoryImp implements UserRepository {
-    private final EntityManager em;
-
+public class UserRepositoryImp extends BaseRepositoryImp implements UserRepository {
     public UserRepositoryImp(EntityManager em) {
-        this.em = em;
+        super(em);
     }
 
     @Override
     public User findById(Long id) {
-        return em.find(User.class, id);
+        return this.em.find(User.class, id);
     }
 
     @Override
     public User findByEmail(String email) {
         try {
-            return em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
+            return this.em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
                     .setParameter("email", email)
                     .getSingleResult();
         } catch (NoResultException e) {
@@ -30,7 +28,7 @@ public class UserRepositoryImp implements UserRepository {
 
     @Override
     public boolean existsByEmail(String email) {
-        return em.createQuery("SELECT COUNT(*) FROM User u WHERE u.email = :email", Long.class)
+        return this.em.createQuery("SELECT COUNT(*) FROM User u WHERE u.email = :email", Long.class)
                 .setParameter("email", email)
                 .getSingleResult() > 0;
     }
@@ -38,18 +36,15 @@ public class UserRepositoryImp implements UserRepository {
     @Override
     public User save(User user) {
         if (user.getId() == null) {
-            em.persist(user);
+            this.em.persist(user);
             return user;
         }
-        return em.merge(user);
+        return this.em.merge(user);
     }
 
     @Override
     public void delete(User user) {
-        if (em.contains(user)) {
-            em.remove(user);
-        } else {
-            em.remove(em.merge(user));
-        }
+        if (this.em.contains(user)) this.em.remove(user);
+        else this.em.remove(this.em.merge(user));
     }
 }
