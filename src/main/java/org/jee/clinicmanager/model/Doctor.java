@@ -10,7 +10,7 @@ import java.util.List;
 @Table(name = "doctors")
 public class Doctor extends User {
     @Column(unique = true, nullable = false)
-    private String licenseNumber;
+    private String matricule;
     private String title;
 
     @ManyToOne(optional = false)
@@ -26,21 +26,21 @@ public class Doctor extends User {
     public Doctor() {
     }
 
-    public Doctor(String firstName, String lastName, String email, String phone, String password, UserRole role, boolean isActive, String licenseNumber, String title, Departement department, List<Availability> availabilities, List<Appointment> appointments) {
+    public Doctor(String firstName, String lastName, String email, String phone, String password, UserRole role, boolean isActive, String matricule, String title, Departement department, List<Availability> availabilities, List<Appointment> appointments) {
         super(firstName, lastName, email, phone, password, role, isActive);
-        this.licenseNumber = licenseNumber;
+        this.matricule = matricule;
         this.title = title;
         this.department = department;
         this.availabilities = availabilities == null ? new ArrayList<>() : availabilities;
         this.appointments = appointments == null ? new ArrayList<>() : appointments;
     }
 
-    public String getLicenseNumber() {
-        return licenseNumber;
+    public String getMatricule() {
+        return matricule;
     }
 
-    public void setLicenseNumber(String licenseNumber) {
-        this.licenseNumber = licenseNumber;
+    public void setMatricule(String matricule) {
+        this.matricule = matricule;
     }
 
     public String getTitle() {

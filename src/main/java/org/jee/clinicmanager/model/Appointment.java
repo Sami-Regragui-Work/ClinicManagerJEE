@@ -23,7 +23,7 @@ public class Appointment {
     private Doctor doctor;
 
     private LocalDate date;
-    // gotta add créneau but I don't even know how
+
     private LocalTime startTime;
 
     @Enumerated(EnumType.STRING)

@@ -3,7 +3,7 @@ package org.jee.clinicmanager.model;
 import jakarta.persistence.*;
 import org.jee.clinicmanager.model.enums.AvailabilityStatus;
 
-import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -18,9 +18,9 @@ public class Availability {
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
-    private DayOfWeek day;
-    private LocalTime startingHour;
-    private LocalTime endingHour;
+    private LocalDate day;
+    private LocalTime startingTime;
+    private LocalTime endingTime;
 
     @Enumerated(EnumType.STRING)
     private AvailabilityStatus status;
@@ -29,11 +29,11 @@ public class Availability {
     public Availability() {
     }
 
-    public Availability(Doctor doctor, DayOfWeek day, LocalTime startingHour, LocalTime endingHour, AvailabilityStatus status, LocalDateTime expiresAt) {
+    public Availability(Doctor doctor, LocalDate day, LocalTime startingTime, LocalTime endingTime, AvailabilityStatus status, LocalDateTime expiresAt) {
         this.doctor = doctor;
         this.day = day;
-        this.startingHour = startingHour;
-        this.endingHour = endingHour;
+        this.startingTime = startingTime;
+        this.endingTime = endingTime;
         this.status = status;
         this.expiresAt = expiresAt;
     }
@@ -54,28 +54,28 @@ public class Availability {
         this.doctor = doctor;
     }
 
-    public DayOfWeek getDay() {
+    public LocalDate getDay() {
         return day;
     }
 
-    public void setDay(DayOfWeek day) {
+    public void setDay(LocalDate day) {
         this.day = day;
     }
 
-    public LocalTime getStartingHour() {
-        return startingHour;
+    public LocalTime getStartingTime() {
+        return startingTime;
     }
 
-    public void setStartingHour(LocalTime startingHour) {
-        this.startingHour = startingHour;
+    public void setStartingTime(LocalTime startingHour) {
+        this.startingTime = startingHour;
     }
 
-    public LocalTime getEndingHour() {
-        return endingHour;
+    public LocalTime getEndingTime() {
+        return endingTime;
     }
 
-    public void setEndingHour(LocalTime endingHour) {
-        this.endingHour = endingHour;
+    public void setEndingTime(LocalTime endingHour) {
+        this.endingTime = endingHour;
     }
 
     public AvailabilityStatus getStatus() {
