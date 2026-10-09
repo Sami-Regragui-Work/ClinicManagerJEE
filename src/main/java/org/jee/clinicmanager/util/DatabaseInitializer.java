@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DatabaseInitializer {
+    private DatabaseInitializer() {}
+
     public static void ensureDatabaseExist(String dbUrlStart, String dbUser, String dbPassword, String dbName) {
         try {
             Class.forName("org.postgresql.Driver");
