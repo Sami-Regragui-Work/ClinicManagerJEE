@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
 <html>
@@ -8,10 +9,12 @@
 <body>
     <h1>Create Account</h1>
 
+    <%--@elvariable id="formError" type="java.lang.String"--%>
     <c:if test="${not empty formError}">
         <div class="alert alert-danger">${formError}</div>
     </c:if>
 
+    <%--@elvariable id="errors" type="java.util.List"--%>
     <c:if test="${not empty errors}">
         <div class="alert alert-danger">
             <ul>
@@ -22,7 +25,7 @@
         </div>
     </c:if>
 
-    <form method="post" action="${pageContext.request.contextPath}/auth/register">
+    <form method="post" action="${ctx}/auth/register">
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName" name="firstName" required/>
 
@@ -41,6 +44,6 @@
         <button type="submit">Register</button>
     </form>
 
-    <p>Already have an account? <a href="${pageContext.request.contextPath}/auth/login">Login</a></p>
+    <p>Already have an account? <a href="${ctx}/auth/login">Login</a></p>
 </body>
 </html>
