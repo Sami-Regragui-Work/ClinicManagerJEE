@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.ConstraintViolation;
 import org.jee.clinicmanager.controller.BaseServlet;
-import org.jee.clinicmanager.dto.UserLoginDTO;
+import org.jee.clinicmanager.dto.request.auth.UserLoginDTO;
 
 import org.jee.clinicmanager.exception.user.UserException;
 import org.jee.clinicmanager.model.User;

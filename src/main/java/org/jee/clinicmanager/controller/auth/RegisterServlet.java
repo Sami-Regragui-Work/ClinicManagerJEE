@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.ConstraintViolation;
 import org.jee.clinicmanager.controller.BaseServlet;
-import org.jee.clinicmanager.dto.UserRegistrationDTO;
+import org.jee.clinicmanager.dto.request.auth.UserRegistrationDTO;
 import org.jee.clinicmanager.exception.user.DuplicateEmailException;
 import org.jee.clinicmanager.repository.imp.UserRepositoryImp;
 import org.jee.clinicmanager.service.AuthService;
