@@ -108,19 +108,19 @@ public class PatientAppointmentServlet extends BaseServlet {
             Set<ConstraintViolation<BookAppointmentDTO>> violations = this.validator.validate(bookAppointmentDTO);
 
             if (!violations.isEmpty()) {
-                req.setAttribute("errors", violations.stream().map(ConstraintViolation::getMessage).toList());
-                req.getRequestDispatcher("/WEB-INF/patient/appointment.form.jsp").forward(req, resp);
+                req.setAttribute("formError", violations.stream().map(ConstraintViolation::getMessage).findFirst().orElse("Invalid input"));
+                req.getRequestDispatcher("/WEB-INF/patient/appointment.index.jsp").forward(req, resp);
                 return;
             }
 
             transaction.begin();
             Appointment appointment = (new PatientService(new PatientRepositoryImp(em), new AvailabilityRepositoryImp(em), new AppointmentRepositoryImp(em), new DoctorRepositoryImp(em))).bookAppointment(userId, bookAppointmentDTO);
             transaction.commit();
-            resp.sendRedirect(req.getContextPath() + "/patient/appointment.index.jsp");
+            resp.sendRedirect(req.getContextPath() + "/patient/appointments");
         } catch (NumberFormatException | DateTimeParseException e) {
             if (transaction.isActive()) transaction.rollback();
             req.setAttribute("formError", "Invalid date/time format");
-            req.getRequestDispatcher("/WEB-INF/patient/appointment.form.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/patient/appointment.index.jsp").forward(req, resp);
         } catch (Exception e) {
             if (transaction.isActive()) transaction.rollback();
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Booking failed", e);
